@@ -1,0 +1,20 @@
+# ── Dev dependencies (install with: pip install -r requirements-dev.txt) ──────
+# Assumes requirements.txt is already installed.
+-r requirements.txt
+
+# ── Testing ───────────────────────────────────────────────────────────────────
+pytest>=8.1.0,<9.0.0                 # test runner
+pytest-asyncio>=0.23.0,<0.24.0      # async test support (for FastAPI + anyio)
+pytest-cov>=5.0.0,<6.0.0            # coverage reporting
+anyio[trio]>=4.3.0,<5.0.0           # trio backend for pytest-asyncio
+
+# ── HTTP client (dev/test extras) ─────────────────────────────────────────────
+httpx>=0.27.0,<0.28.0               # pinned to match prod; used in TestClient
+httpx[http2]>=0.27.0,<0.28.0       # optional h2 support for testing HTTP/2 routes
+
+# ── FastAPI test client ───────────────────────────────────────────────────────
+# httpx is the required backend for FastAPI's async TestClient (no extra install)
+
+# ── Mocking / faking ──────────────────────────────────────────────────────────
+pytest-mock>=3.14.0,<4.0.0          # mocker fixture (thin wrapper around unittest.mock)
+respx>=0.21.0,<0.22.0               # mock httpx requests (for Groq/LangChain HTTP calls)
